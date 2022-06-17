@@ -1,8 +1,9 @@
 #!/bin/bash
 
-readonly ORIGIN_PATH=/Users/liudongxu03/Documents/IdeaProjects/openresty-project/origin/
-# readonly SRC_PATH=/Users/liudongxu03/Documents/IdeaProjects/openresty-project/src
-readonly OUTPUT_PATH=/Users/liudongxu03/Documents/IdeaProjects/openresty-project/output
+readonly PROJECT_PATH=/Users/liudongxu03/Documents/IdeaProjects/openresty-starter
+readonly ORIGIN_PATH=${PROJECT_PATH}/origin/
+# readonly SRC_PATH=${PROJECT_PATH}/src
+readonly OUTPUT_PATH=${PROJECT_PATH}/output
 readonly INSTALL_OPENRESTY_NAME="openresty-1.21.4.1"
 readonly OPENSSL_NAME="openssl-1.1.1m"
 readonly PCRE_NAME="pcre-8.45"

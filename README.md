@@ -1,4 +1,4 @@
-# openresty-project
+# openresty-starter
 
 ## 介绍
 openresty开发代理服务，包括http、websocket、SSE。

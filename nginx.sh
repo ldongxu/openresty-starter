@@ -1,7 +1,8 @@
 #!/bin/sh
 
-readonly SRC_PATH=/Users/liudongxu03/Documents/IdeaProjects/openresty-project/src
-readonly OUTPUT_PATH=/Users/liudongxu03/Documents/IdeaProjects/openresty-project/output
+readonly PROJECT_PATH=/Users/liudongxu03/Documents/IdeaProjects/openresty-starter
+readonly SRC_PATH=${PROJECT_PATH}/src
+readonly OUTPUT_PATH=${PROJECT_PATH}/output
 readonly RELEASE_DIR="openresty"
 
 function copy_files() {

@@ -1,6 +1,6 @@
 local http = require "resty.http" -- https://github.com/ledgetech/lua-resty-http
 
-local _M = {_VERSION = '1.0.0'}
+local _M = {_VERSION = '0.0.2'}
 _M.__index = _M
 
 -- variable caching (https://www.cryptobells.com/properly-scoping-lua-nginx-modules-ngx-ctx/)
@@ -73,6 +73,12 @@ function _M.close(self)
     self.httpc:close()
 end -- close
 
+function _M.transfer_encoding_is_chunked(self)
+    local headers = self.res.headers
+    if self.httpc.transfer_encoding_is_chunked(headers) then
+        self.res.headers["Transfer-Encoding"]=nil
+    end
+end
 
 local function _headers_format_request(headers)
     if type(headers) ~= "table" then headers = {} end
