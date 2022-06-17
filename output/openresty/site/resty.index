@@ -1,0 +1,34 @@
+# BEGIN lua-resty-http
+
+dist lua-resty-http-0.16.1
+  aliases resty.http
+  modules lua-resty-http-0.16.1
+
+module lua-resty-http-0.16.1
+  aliases resty.http
+  section 18 13196 lua-resty-http
+  section 176 358 status
+  section 358 779 features
+  section 779 1471 api
+  section 1270 1471 deprecated
+  section 1471 13196 usage
+  section 2153 2960 single-shot request
+  section 2960 13196 streamed request
+  section 13196 14288 response
+  section 13215 14009 res.body\_reader
+  section 14009 14118 res:read\_body
+  section 14118 14288 res:read\_trailers
+  section 14288 15980 utility
+  section 14306 14946 parse\_uri
+  section 14946 15980 get\_client\_body\_reader
+  section 15980 20066 deprecated
+  section 16092 16607 tcp only connect
+  section 16607 18701 connect\_proxy
+  section 18701 19072 ssl\_handshake
+  section 19072 20066 proxy\_request / proxy\_response
+  section 19415 19777 proxy\_request
+  section 19777 20066 proxy\_response
+  section 20066 20192 author
+  section 20192 21629 licence
+
+# END lua-resty-http

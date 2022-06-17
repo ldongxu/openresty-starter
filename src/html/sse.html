@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+        var source = new EventSource("/sse/123");
+        source.addEventListener("message",function (e){
+            document.getElementById("sse-content").innerHTML += "\n"+e.data;
+        });
+    </script>
+</head>
+<body>
+<p>sse data content:</p>
+<div id="sse-content"></div>
+</body>
+</html>
