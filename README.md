@@ -64,15 +64,6 @@ location /sse_proxy {
       content_by_lua_block {
                 local sse = require("sse")
 
-                local function return_client_res(res)
-                    ngx.status = res.status
-                    for k, v in pairs(res.header)  do
-                        ngx.header[k] = v
-                    end
-                    ngx.say(res.body)
-                    return ngx.exit(ngx.status)
-                end
-
                 local function my_cleanup()
                     -- need config lua_check_client_abort on;
                     ngx.log(ngx.NOTICE,"onabort exit 499")
@@ -100,7 +91,12 @@ location /sse_proxy {
                     ngx.log(ngx.ERR,"failed to request: ", err2)
                     return
                 end
-            
+
+                conn:transfer_encoding_is_chunked() --处理 Transfer-Encoding:chunked
+                for k, v in pairs(res.headers)  do
+                    ngx_header[k] = v
+                end
+
                 while is_sse_resp
                 do
                     local event, err3 = conn:receive()
@@ -114,7 +110,8 @@ location /sse_proxy {
                         ngx.flush()   -- 一定要flush
                     end
                 end
-                return return_client_res(res)
+                ngx.say(res.body)
+                return ngx.exit(ngx.status)
       }
 }
 ````
