@@ -100,20 +100,6 @@ local function _read_body(self,params)
 
     self.res.body = body
 
-    if params.keepalive == false then
-        local ok, err = self:close()
-        if not ok then
-            ngx_log(ngx_ERR, err)
-        end
-
-    else
-        local ok, err = self:set_keepalive(params.keepalive_timeout, params.keepalive_pool)
-        if not ok then
-            ngx_log(ngx_ERR, err)
-        end
-
-    end
-
     return self.res, nil
 end
 
@@ -161,6 +147,19 @@ function _M.request_uri(self, uri, params)
         _read_body(self,params)
     end
 
+    if params.keepalive == false then
+        local ok, err = self:close()
+        if not ok then
+            ngx_log(ngx_ERR, err)
+        end
+
+    else
+        local ok, err = self:set_keepalive(params.keepalive_timeout, params.keepalive_pool)
+        if not ok then
+            ngx_log(ngx_ERR, err)
+        end
+
+    end
     return self.res, err, is_sse_resp
 end -- request_uri
 

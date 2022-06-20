@@ -94,7 +94,7 @@ location /sse_proxy {
 
                 conn:transfer_encoding_is_chunked() --处理 Transfer-Encoding:chunked
                 for k, v in pairs(res.headers)  do
-                    ngx_header[k] = v
+                    ngx.header[k] = v
                 end
 
                 while is_sse_resp
