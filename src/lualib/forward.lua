@@ -1,9 +1,5 @@
 local sse = require("sse")
 
-local start_time = ngx.now()
-local req_headers = ngx.req.get_headers()
-local accept = req_headers['Accept']
-
 local function return_client_res(res)
     ngx.status = res.status
     for k, v in pairs(res.header)  do
@@ -13,8 +9,11 @@ local function return_client_res(res)
     return ngx.exit(ngx.status)
 end
 
+local start_time = ngx.now()
+local req_headers = ngx.req.get_headers()
+local accept = req_headers['Accept']
 
-if (string.find(accept, "text/event-stream", 1, true)) then
+if (accept and string.find(accept, "text/event-stream", 1, true)) then
     local function my_cleanup()
         -- custom cleanup work goes here, like cancelling a pending DB transaction
         -- now abort all the "light threads" running in the current request handler
