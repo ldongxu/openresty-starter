@@ -125,16 +125,21 @@ gitee：[https://gitee.com/liu_dongxu/springboot-demo](https://gitee.com/liu_don
 github：[https://github.com/ldongxu/springboot_mybatis-starter](https://github.com/ldongxu/springboot_mybatis-starter)
 
 
-1. `java -jar demo-0.0.1-SNAPSHOT.jar` 启动SSE server。
-2. `sh nginx.sh start` 脚本启动openresty。
-3. 打开一个终端，`curl -i http://localhost/ssev2`，请求SSE。
-4. 打开另一个终端，`curl -i http://localhost:8080/send/123`，从server端推送数据。
+1 . `java -jar demo-0.0.1-SNAPSHOT.jar` 启动SSE server。
 
+2 . `sh nginx.sh start` 脚本启动openresty。
+
+3 . 打开一个终端，请求SSE。
 
 ````
 //curl https时一定需要加上 -k
-curl -H 'Accept:text/event-stream' -H 'X-LOGID:12345678' -H "im_proxy_scheme:http" -H 'im_proxy_host:127.0.0.1' -H 'im_proxy_location:/sse/123' 'https://localhost/proxy-123' -i -k
+curl -H 'Accept:text/event-stream' -H 'X-LOGID:12345678' -H "im_proxy_scheme:http" -H 'im_proxy_host:127.0.0.1:8080' -H 'im_proxy_location:/events/123' 'https://localhost/proxy-123' -i -k
 ````
+
+ 4 .  打开另一个终端，`curl -i http://localhost:8080/send/123`，从server端推送数据。
+
+
+
 
 
 ## 配置SSL使得Nginx支持HTTPS协议

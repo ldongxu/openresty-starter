@@ -103,7 +103,6 @@ local function _read_body(self,params)
     return self.res, nil
 end
 
-
 function _M.request_uri(self, uri, params)
     params = tbl_copy(params or {}) -- Take by value
     if self.httpc.proxy_opts then
@@ -141,6 +140,7 @@ function _M.request_uri(self, uri, params)
         self.httpc:close()
         return nil, err
     end
+
     self.res = res
     local is_sse_resp = self:headers_check_response()
     if not is_sse_resp then
