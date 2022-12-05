@@ -14,7 +14,7 @@ _M.mysql = {
     port = 3306,
     database = "im_xplatform",
     user = "root",
-    password = "1234qwer",
+    password = "123456789",
     charset = "utf8"
 }
 

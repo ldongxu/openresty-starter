@@ -1,3 +1,4 @@
+-- lua-resty-worker-events
 local ngx = ngx
 local log = ngx.log
 local ERR = ngx.ERR

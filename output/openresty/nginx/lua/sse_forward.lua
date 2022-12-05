@@ -17,7 +17,6 @@ function _M.is_sse_accept(self)
 end
 
 function _M.sse_req(self, req_path)
-
     local ok, err0 = ngx.on_abort(my_cleanup)
     if not ok then
         ngx.log(ngx.ERR, "failed to register the on_abort callback: ", err0)
@@ -61,7 +60,6 @@ function _M.sse_req(self, req_path)
     ngx.status=res.status
     ngx.say(res.body)
     return ngx.exit(res.status)
-
 end
 
 return _M

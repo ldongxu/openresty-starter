@@ -8,9 +8,13 @@ local _M={
 }
 
 function _M:reload(data)
+    if not data then
+        ngx.log(ngx.ERR,"data is nil, not reload")
+        return
+    end
     self.version = self.version+1
     self.data = data
-    ngx.log(ngx.ERR,"process=",process.type(),"-",ngx.worker.id(),", version=",self.version,", data=",cjson.encode(self.data))
+    ngx.log(ngx.NOTICE,"process=",process.type(),"-",ngx.worker.id(),", version=",self.version,", data=",cjson.encode(self.data))
 end
 
 

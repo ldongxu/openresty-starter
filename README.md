@@ -2,6 +2,7 @@
 
 ## 介绍
 openresty开发代理服务，包括http、websocket、SSE。
+worker间通信case。
 
 
 
@@ -47,7 +48,7 @@ nginx.sh  --- 启动脚本
 ## 使用说明
 
 1.  当前工程里output/openresty目录里是mac系统下的编译产出
-2.  build.sh和nginx.sh脚本执行时均会同步src目录下的文件到output/openresty执行目录，conf目录的文件同步到output/openresty/nginx/conf目录，lualib目录的文件会完全同步覆盖到output/openresty/nginx/lua目录。
+2.  build.sh和nginx.sh脚本执行时均会同步src目录下的文件到output/openresty执行目录，/src/conf目录的文件同步到output/openresty/nginx/conf目录，/src/lualib目录的文件会完全同步覆盖到output/openresty/nginx/lua目录。
 
 
 ## SSE代理
