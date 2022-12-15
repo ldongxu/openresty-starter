@@ -11,11 +11,17 @@ function copy_files() {
         exit 1
     }
 }
-rm -rf ${OUTPUT_PATH}/${RELEASE_DIR}/nginx/lua
-# 覆盖配置文件
-copy_files ${SRC_PATH}/conf ${OUTPUT_PATH}/${RELEASE_DIR}/nginx
-copy_files ${SRC_PATH}/lualib/ ${OUTPUT_PATH}/${RELEASE_DIR}/nginx/lua
-copy_files ${SRC_PATH}/html ${OUTPUT_PATH}/${RELEASE_DIR}/nginx
+
+
+function override_files() {
+  rm -rf ${OUTPUT_PATH}/${RELEASE_DIR}/nginx/lua
+  rm -rf ${OUTPUT_PATH}/${RELEASE_DIR}/nginx/html
+    # 覆盖配置文件
+  copy_files ${SRC_PATH}/conf ${OUTPUT_PATH}/${RELEASE_DIR}/nginx
+  copy_files ${SRC_PATH}/lualib/ ${OUTPUT_PATH}/${RELEASE_DIR}/nginx/lua
+  copy_files ${SRC_PATH}/html ${OUTPUT_PATH}/${RELEASE_DIR}/nginx
+}
+
 
 
 DESC="nginx daemon"
@@ -25,12 +31,13 @@ NGX_ROOT=${OUTPUT_PATH}/${RELEASE_DIR}
 NGX_PATH=${NGX_ROOT}/nginx
 DAEMON=${NGX_PATH}/sbin/nginx
 CONFIGFILE=${NGX_PATH}/conf/nginx.conf
-PIDFILE=${NGX_PATH}/conf/$NAME.pid
+PIDFILE=${NGX_PATH}/logs/$NAME.pid
 echo "pid_file: $PIDFILE "
 
 cmd="$DAEMON -p $NGX_PATH -c $CONFIGFILE "
 
 do_start() {
+  override_files
 	op=""
 	$cmd $op
 }
@@ -40,9 +47,11 @@ do_stop() {
 	# 快速关闭
 	op="-s stop"
 	$cmd $op
+	rm -rf ${OUTPUT_PATH}/${RELEASE_DIR}/nginx/logs/*.log
 }
 
 do_reload() {
+  override_files
 	op="-s reload"
 	$cmd $op
 }
@@ -56,6 +65,7 @@ do_restart() {
 	op="-s quit"
 	$cmd $op
 	sleep 1
+	override_files
 	op=""
 	$cmd $op
 }

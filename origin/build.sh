@@ -69,6 +69,7 @@ function build_openresty() {
 function install_third_deps() {
     cd ${OUTPUT_PATH}/${RELEASE_DIR}/bin
     ./opm get ledgetech/lua-resty-http
+#    ./opm get openresty/lua-resty-websocket
 }
 
 # compile & build
@@ -78,7 +79,7 @@ install_third_deps
 # copy_files ${SRC_PATH}/conf ${OUTPUT_PATH}/${RELEASE_DIR}/nginx
 # copy_files ${SRC_PATH}/lualib/ ${OUTPUT_PATH}/${RELEASE_DIR}/nginx/lua
 
-echo "success"
+echo "build success"
 
 #        --with-file-aio
 #        --add-module=../ngx_devel_kit-0.3.1rc1

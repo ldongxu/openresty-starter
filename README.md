@@ -1,8 +1,8 @@
 # openresty-starter
 
 ## 介绍
-openresty开发代理服务，包括http、websocket、SSE。
-worker间通信case。
+openresty开发代理服务，包括http、websocket、SSE代理访问。
+worker间数据同步。
 
 
 
@@ -45,11 +45,28 @@ nginx.sh  --- 启动脚本
 3. 在/src目录下进行开发。/src/conf是nginx配置目录，/src/lualib是开发者自己的lua文件目录。
 4. `sh nginx.sh start` 启动服务。
 
-## 使用说明
+### 使用说明
 
 1.  当前工程里output/openresty目录里是mac系统下的编译产出
 2.  build.sh和nginx.sh脚本执行时均会同步src目录下的文件到output/openresty执行目录，/src/conf目录的文件同步到output/openresty/nginx/conf目录，/src/lualib目录的文件会完全同步覆盖到output/openresty/nginx/lua目录。
 
+## HTTP代理
+
+HTTP代理主要通过Header里的im_proxy_开头的字段传递被代理的原始路径信息。
+如：
+````
+//curl https时一定需要加上 -k
+curl  -H 'X-LOGID:12345678' -H "im_proxy_scheme:http" -H 'im_proxy_host:127.0.0.1:8080' -H 'im_proxy_location:/events/123' 'https://localhost/proxy-123' -i -k
+````
+
+
+## WebSocket代理
+WebSocket代理使用方式：ws://127.0.0.1/wsproxy/{orig_websocket_url_path}
+
+**样例：**
+
+假如原ws地址为：ws://abc.com/ws?id=12345，
+那么通过代理访问，完整的路径为：ws://127.0.0.1/wsproxy/abc.com/ws?id=12345。
 
 ## SSE代理
 

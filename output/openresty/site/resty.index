@@ -32,3 +32,59 @@ module lua-resty-http-0.16.1
   section 20192 21629 licence
 
 # END lua-resty-http
+# BEGIN lua-resty-websocket
+
+dist lua-resty-websocket-0.07
+  aliases resty.websocket
+  modules lua-resty-websocket-0.07
+
+module lua-resty-websocket-0.07
+  aliases resty.websocket
+  section 18 107 name
+  section 107 169 status
+  section 169 610 description
+  section 610 2874 synopsis
+  section 2874 13821 modules
+  section 2893 7383 resty.websocket.server
+  section 3020 7383 methods
+  section 3040 4082 new
+  section 4082 4214 set_timeout
+  section 4214 4507 send_text
+  section 4507 4806 send_binary
+  section 4806 5216 send_ping
+  section 5216 5551 send_pong
+  section 5551 5997 send_close
+  section 5997 6624 send_frame
+  section 6624 7383 recv_frame
+  section 7383 13222 resty.websocket.client
+  section 8419 13222 methods
+  section 8439 9345 client:new
+  section 9345 10776 client:connect
+  section 10776 10961 client:close
+  section 10961 11693 client:set_keepalive
+  section 11693 11836 client:set_timeout
+  section 11836 11988 client:send_text
+  section 11988 12146 client:send_binary
+  section 12146 12337 client:send_ping
+  section 12337 12528 client:send_pong
+  section 12528 12729 client:send_close
+  section 12729 13067 client:send_frame
+  section 13067 13222 client:recv_frame
+  section 13222 13821 resty.websocket.protocol
+  section 13355 13821 methods
+  section 13375 13529 recv_frame
+  section 13529 13668 build_frame
+  section 13668 13821 send_frame
+  section 13821 14321 automatic error logging
+  section 14321 15115 limitations
+  section 15115 16170 installation
+  section 16170 16186 todo
+  section 16186 16473 community
+  section 16207 16343 english mailing list
+  section 16343 16473 chinese mailing list
+  section 16473 16772 bugs and patches
+  section 16772 16870 author
+  section 16870 18352 copyright and license
+  section 18352 18973 see also
+
+# END lua-resty-websocket
